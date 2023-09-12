@@ -4,7 +4,7 @@ import {createSlice } from '@reduxjs/toolkit';
 const inputSlice = createSlice({
     name:'search',
     initialState: {
-        searchTerm : '',
+        searchTerm : 'Indore',
     },
     reducers : {
         addSearchTerm(state, action){

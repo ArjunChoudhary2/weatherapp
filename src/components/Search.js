@@ -1,39 +1,53 @@
-import { useSelector,useDispatch } from "react-redux";
-import { addSearchTerm } from "../store";
+import { useSelector, useDispatch } from "react-redux";
+import { addSearchTerm, setResponse } from "../store";
 import { useFetchWeatherQuery } from "../store/apis/weatherApi";
 
-function Search(){
-    const dispatch = useDispatch();
-    const searchTerm = useSelector((state)=> {
-        return state.search.searchTerm;
-    });
-   
-    const handleSearch = (event) => {
-          dispatch(addSearchTerm(event.target.value));
-    }
+function Search() {
+  const dispatch = useDispatch();
+  const searchTerm = useSelector((state) => {
+    return state.search.searchTerm;
+  });
 
-    // 
-    let currentTemp = 0;
-    const {data, error, isLoading}  = useFetchWeatherQuery(searchTerm);
+  let localSearchTerm = '';
 
-    try {
-        
-        currentTemp = data.temp;
-        console.error(currentTemp);
-    } catch (error) {
-        console.error(error);
-    }
-    
-    
-    
+  const handleSearch = (event) => {
+    dispatch(addSearchTerm(event.target.value));
+  };
 
-    return <div>
-        <form>
-            <h2>Search</h2>
-            <input type="text" value={searchTerm} onChange={handleSearch}/>
-            <h1 >Output : {currentTemp} </h1>
-        </form>
+
+  //
+  const response = {
+    temp: 0,
+    feels_like: 0,
+    humidity: 0,
+    windSpeed: 0,
+    condition : '',
+  };
+  const { data, error, isLoading } = useFetchWeatherQuery(searchTerm);
+
+  try {
+    response.temp = data.current.temp_c;
+    response.feels_like = data.current.feelslike_c;
+    response.humidity = data.current.humidity;
+    response.windSpeed = data.current.wind_kph;
+    response.condition = data.current.condition.text;
+    response.is_day =  data.current.is_day;
+    response.iconCode =  data.current.condition.icon;
+    dispatch(setResponse(response));
+    console.error(response);
+  } catch (error) {
+    console.error(error);
+  }
+
+  return (
+    <div>
+      <form>
+        <label>Search</label>
+        <input type="text" value={searchTerm} onChange={handleSearch}/>
+        <button  >Search</button>
+      </form>
     </div>
+  );
 }
 
 export default Search;

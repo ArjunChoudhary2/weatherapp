@@ -12,12 +12,12 @@ const weatherApi = createApi({
         query: (name) => {
           return {
             method: "GET",
-            url: "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather",
-            params: { city: name },
+            url: "https://weatherapi-com.p.rapidapi.com/current.json",
+            params: { q: name },
             headers: {
               "X-RapidAPI-Key":
                 "5f5a5c804cmsh27e13b075631734p1a7579jsnb2cb29f5f253",
-              "X-RapidAPI-Host": "weather-by-api-ninjas.p.rapidapi.com",
+              "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
             },
           };
         },

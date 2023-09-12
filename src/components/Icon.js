@@ -1,25 +1,21 @@
-import {
-  TiWeatherCloudy,
-  TiWeatherSunny,
-  TiWeatherSnow,
-  TiWeatherStormy,
-  TiWeatherShower,
-  TiWeatherDownpour,
-} from "react-icons/ti";
+import classNames from 'classnames';
+import { useSelector } from 'react-redux';
 
-function Icon({ weatherType }) {
-  if (weatherType === "cloudy") {
-    return <TiWeatherCloudy size={200} />;
-  } else if (weatherType === "sunny") {
-    return <TiWeatherSunny size={200} />;
-  } else if (weatherType === "snow") {
-    return <TiWeatherSnow size={200} />;
-  } else if (weatherType === "stormy") {
-    return <TiWeatherStormy size={200} />;
-  } else if (weatherType === "shower") {
-    return <TiWeatherShower size={200} />;
-  } else if (weatherType === "downpour") {
-    return <TiWeatherDownpour size={200} />;
-  }
+function Icon({ weatherType, className, ...rest }) {
+
+  const finalClassName = classNames(
+    "flex shadow bg-white p-2",
+    className
+  );
+
+  const imageObject = useSelector((state) => {
+    return state.response.myObject;
+  })
+  const imagePath = imageObject.iconCode;
+  return (
+    <div className={finalClassName}{...rest}>
+      <img src={imagePath} alt="My Image" className="flex items-center w-25 h-25" />
+    </div>
+  );
 }
 export default Icon;
