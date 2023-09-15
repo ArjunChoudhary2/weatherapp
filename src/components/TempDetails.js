@@ -1,27 +1,44 @@
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 
-  
-
 function TempDetails({ children, className, ...rest }) {
+  const finalClassName = classNames(" rounded shadow", className);
 
-    const finalClassName = classNames(
-        "border rounded shadow bg-white",
-        className
-      );
+  const myObject = useSelector((state) => {
+    return state.response.myObject;
+  });
 
-    const myObject = useSelector((state) => {
-        return state.response.myObject;
-    })
-    
-
-  return <div className={finalClassName}{...rest}>
-    <h2>Temprature : {myObject.temp}</h2>
-    <h2>Feels Like : {myObject.feels_like}</h2>
-    <h2>humidity : {myObject.humidity}</h2>
-    <h2>Wind Speed: {myObject.windSpeed}</h2>
-    <h2>condition : {myObject.condition}</h2>
-  </div>;
+  return (
+    <div className={finalClassName} {...rest}>
+      <table>
+        <tr>
+          <td>Temprature</td>
+          <td> : </td>
+          <td>{myObject.temp}°C</td>
+        </tr>
+        <tr>
+          <td>Feels Like</td>
+          <td> : </td>
+          <td>{myObject.feels_like}°C</td>
+        </tr>
+        <tr>
+          <td>Humidity</td>
+          <td> : </td>
+          <td>{myObject.humidity}%</td>
+        </tr>
+        <tr>
+          <td>Wind Speed</td>
+          <td> : </td>
+          <td>{myObject.windSpeed}km/h</td>
+        </tr>
+        <tr>
+          <td>Condition</td>
+          <td> : </td>
+          <td>{myObject.condition}</td>
+        </tr>
+      </table>
+    </div>
+  );
 }
 
 export default TempDetails;

@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { inputReducer } from "../slices/inputSlice";
 
 const weatherApi = createApi({
   reducerPath: "weather",

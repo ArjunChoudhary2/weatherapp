@@ -6,13 +6,11 @@ import className from "classnames";
 
 function weatherPage() {
   return (
-    <div>
-      <Panel className="flex justify-center items-center h-screen ">
-        <div className="flex grid">
-          <Icon />
-          <Search />
-        </div>
-        <TempDetails/>
+    <div className="py-48 ">
+      <Panel className="h-64 grid place-content-center py-40">
+        <Icon />
+        <Search className=" text-white text-lg py-4"/>
+        <TempDetails className=" text-white text-base"/>
       </Panel>
     </div>
   );
