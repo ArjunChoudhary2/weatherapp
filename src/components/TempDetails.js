@@ -2,7 +2,10 @@ import { useSelector } from "react-redux";
 import classNames from "classnames";
 
 function TempDetails({ children, className, ...rest }) {
-  const finalClassName = classNames("rounded shadow dark:text-white", className);
+  const finalClassName = classNames(
+    "rounded shadow dark:text-white",
+    className
+  );
 
   const myObject = useSelector((state) => {
     return state.response.myObject;
@@ -11,6 +14,7 @@ function TempDetails({ children, className, ...rest }) {
   return (
     <div className={finalClassName} {...rest}>
       <table>
+      <tbody>
         <tr>
           <td>Temprature</td>
           <td> : </td>
@@ -36,7 +40,9 @@ function TempDetails({ children, className, ...rest }) {
           <td> : </td>
           <td>{myObject.condition}</td>
         </tr>
+        </tbody>
       </table>
+      {myObject.cityName}
     </div>
   );
 }

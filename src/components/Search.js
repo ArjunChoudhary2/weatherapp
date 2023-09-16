@@ -23,6 +23,7 @@ function Search({ className, ...rest }) {
       setPlaceholder(newValue);
       setShouldNotFetchData(false);
       try {
+        response.cityName = searchTerm;
         response.temp = data.current.temp_c || "";
         response.feels_like = data.current.feelslike_c || "";
         response.humidity = data.current.humidity || "";
@@ -33,19 +34,20 @@ function Search({ className, ...rest }) {
         dispatch(setResponse(response));
         console.error(response);
       } catch (error) {
-        if(error){
-        console.error(error);
+        if (error) {
+          console.error(error);
         }
       }
     } else if (newValue.length < 3) {
       setPlaceholder(newValue);
       setShouldNotFetchData(false);
-      setSearchTerm('');
+      setSearchTerm("");
     }
   };
 
   // INITIALIZING RESPONSE OBJECT TO RECEIVE DATA FROM API
   const response = {
+    cityName: '',
     temp: 0,
     feels_like: 0,
     humidity: 0,
@@ -59,6 +61,7 @@ function Search({ className, ...rest }) {
   });
 
   try {
+    response.cityName = searchTerm|| '';
     response.temp = data.current.temp_c || "";
     response.feels_like = data.current.feelslike_c || "";
     response.humidity = data.current.humidity || "";
@@ -67,16 +70,16 @@ function Search({ className, ...rest }) {
     response.is_day = data.current.is_day || "";
     response.iconCode = data.current.condition.icon || "";
     dispatch(setResponse(response));
-    console.error(response);
-  } catch (error) {if(error){
-    console.error(error);
+  } catch (error) {
+    if (error) {
+      console.log("no error");
     }
   }
 
-  if(response.is_day===1){
-    document.documentElement.classList.remove('dark')
-  }else{
-    document.documentElement.classList.add('dark')
+  if (response.is_day === 1) {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
   }
   return (
     <div className={finalClassName} {...rest}>
