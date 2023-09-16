@@ -73,16 +73,21 @@ function Search({ className, ...rest }) {
     }
   }
 
+  if(response.is_day===1){
+    document.documentElement.classList.remove('dark')
+  }else{
+    document.documentElement.classList.add('dark')
+  }
   return (
     <div className={finalClassName} {...rest}>
       <form onSubmit={handleSearch}>
-        <label className="mr-3">Search</label>
+        <label className="mr-3 dark:text-white">Search</label>
         <input
           type="text"
           placeholder={searchTerm}
           value={placeholder}
           onChange={handleChange}
-          className="text-black rounded shadow"
+          className="text-black dark:bg-slate-700 dark:text-white rounded shadow"
         />
       </form>
     </div>

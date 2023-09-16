@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import classNames from "classnames";
 
 function TempDetails({ children, className, ...rest }) {
-  const finalClassName = classNames(" rounded shadow", className);
+  const finalClassName = classNames("rounded shadow dark:text-white", className);
 
   const myObject = useSelector((state) => {
     return state.response.myObject;
