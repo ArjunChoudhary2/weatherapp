@@ -10,13 +10,13 @@ function weatherPage() {
   
 
   return (
-    <div className="py-48 ">
-      <Panel className="h-64 grid place-content-center py-40">
+    <div className="py-48  ">
+      <Panel className=" h-64 w-1/2 grid place-content-center py-40">
         <Icon />
         <Search className=" text-black text-lg py-4 dark:text-white"/>
         <TempDetails className=" text-black text-base dark:text-white"/>
       </Panel>
-        <Forecast/>
+        <Forecast className="w-1/2 max-w-sm mx-auto border bg-blue-500  rounded-xl dark:bg-slate-700 dark:text-white"/>
     </div>
   );
 }

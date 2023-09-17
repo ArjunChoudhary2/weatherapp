@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { GoChevronLeft, GoChevronDown } from "react-icons/go";
+import classNames from "classnames";
 
-function Accordion({ items }) {
+function Accordion({ items ,className, ...rest}) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
+  // const finalClassName = classNames('border-x border-t rounded',className);
 
   const handleClick = (nextIndex) => {
     if (expandedIndex === nextIndex) setExpandedIndex(-1);
@@ -20,7 +22,7 @@ function Accordion({ items }) {
     return (
       <div>
         <div
-          className="flex justify-between p-3 bg-gray-50 border-b items-center cusrsor-pointer"
+          className="flex justify-between p-3 border-b items-center cusrsor-pointer"
           onClick={() => {
             handleClick(index);
           }}
@@ -33,7 +35,7 @@ function Accordion({ items }) {
     );
   });
 
-  return <div className="border-x border-t rounded">{renderdItems}</div>;
+  return <div className="border-x border-t rounded ">{renderdItems}</div>;
 }
 
 export default Accordion;

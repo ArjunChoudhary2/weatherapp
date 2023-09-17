@@ -8,7 +8,7 @@ function Search({ className, ...rest }) {
   const finalClassName = classNames("", className);
 
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState("Indore");
+  var [searchTerm, setSearchTerm] = useState("Indore");
   const [shouldNotFetchData, setShouldNotFetchData] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
 

@@ -42,7 +42,6 @@ function TempDetails({ children, className, ...rest }) {
         </tr>
         </tbody>
       </table>
-      {myObject.cityName}
     </div>
   );
 }
