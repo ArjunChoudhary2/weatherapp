@@ -6,21 +6,24 @@ import classNames from "classnames";
 
 function Search({ className, ...rest }) {
   const finalClassName = classNames("", className);
-
   const dispatch = useDispatch();
   var [searchTerm, setSearchTerm] = useState("Indore");
   const [shouldNotFetchData, setShouldNotFetchData] = useState(false);
-  const [placeholder, setPlaceholder] = useState("");
 
-  const handleSearch = (event) => {
-    event.preventDefault();
+  // INITIALIZING RESPONSE OBJECT TO RECEIVE DATA FROM API
+  const response = {
+    cityName: "",
+    temp: 0,
+    feels_like: 0,
+    humidity: 0,
+    windSpeed: 0,
+    condition: "",
   };
 
   const handleChange = (event) => {
     const newValue = event.target.value;
     if (newValue.length >= 3) {
       setSearchTerm(newValue);
-      setPlaceholder(newValue);
       setShouldNotFetchData(false);
       try {
         response.cityName = searchTerm;
@@ -39,20 +42,9 @@ function Search({ className, ...rest }) {
         }
       }
     } else if (newValue.length < 3) {
-      setPlaceholder(newValue);
       setShouldNotFetchData(false);
       setSearchTerm("");
     }
-  };
-
-  // INITIALIZING RESPONSE OBJECT TO RECEIVE DATA FROM API
-  const response = {
-    cityName: '',
-    temp: 0,
-    feels_like: 0,
-    humidity: 0,
-    windSpeed: 0,
-    condition: "",
   };
 
   // calling WEATHER API
@@ -61,7 +53,7 @@ function Search({ className, ...rest }) {
   });
 
   try {
-    response.cityName = searchTerm|| '';
+    response.cityName = searchTerm || "";
     response.temp = data.current.temp_c || "";
     response.feels_like = data.current.feelslike_c || "";
     response.humidity = data.current.humidity || "";
@@ -83,12 +75,11 @@ function Search({ className, ...rest }) {
   }
   return (
     <div className={finalClassName} {...rest}>
-      <form onSubmit={handleSearch}>
+      <form>
         <label className="mr-3 dark:text-white">Search</label>
         <input
           type="text"
           placeholder={searchTerm}
-          value={placeholder}
           onChange={handleChange}
           className="text-black dark:bg-slate-700 dark:text-white rounded shadow"
         />
