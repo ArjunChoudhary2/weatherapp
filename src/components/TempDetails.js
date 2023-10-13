@@ -16,7 +16,7 @@ function TempDetails({ children, className, ...rest }) {
       <table>
       <tbody>
         <tr>
-          <td>Temprature</td>
+          <td>Temperature</td>
           <td> : </td>
           <td>{myObject.temp}°C</td>
         </tr>

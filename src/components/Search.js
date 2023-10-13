@@ -54,13 +54,13 @@ function Search({ className, ...rest }) {
 
   try {
     response.cityName = searchTerm || "";
-    response.temp = data.current.temp_c || "";
-    response.feels_like = data.current.feelslike_c || "";
-    response.humidity = data.current.humidity || "";
-    response.windSpeed = data.current.wind_kph || "";
-    response.condition = data.current.condition.text || "";
-    response.is_day = data.current.is_day || "";
-    response.iconCode = data.current.condition.icon || "";
+    response.temp = data?.current.temp_c || "";
+    response.feels_like = data?.current.feelslike_c || "";
+    response.humidity = data?.current.humidity || "";
+    response.windSpeed = data?.current.wind_kph || "";
+    response.condition = data?.current.condition.text || "";
+    response.is_day = data?.current.is_day || "";
+    response.iconCode = data?.current.condition.icon || "";
     dispatch(setResponse(response));
   } catch (error) {
     if (error) {
